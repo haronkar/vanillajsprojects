@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Checkers by Haronkar</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" /> 
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet"> 
+
+	<link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
+	<link rel="shortcut icon" href="icon/favicon.ico">
+<body>
+	<div class=super>
+		<div class="nav-container">
+			<nav>
+				<div>
+					<h3 class="logo">checkers.</h3>
+					<h6>by Haronkar</h6>
+				</div>
+				<ul class="links">
+					<li class="navlink">Home</li>
+					<li class="navlink">Game</li>
+					<li class="navlink">Rules</li>
+				</ul>
+				<svg class="menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z" fill="white"/></svg>
+				<div class="menuHide">
+					<div class="nav-open">
+						<div class="menuLink">Home</div>
+						<div class="menuLink">Game</div>
+						<div class="menuLink">Rules</div>
+					</div>
+				</div>
+			</nav>
+		</div>
+		<main>
+			<div class="page home">
+				<h2 class="main-text">Welcome</h2>
+				<button class="play-button" onclick="changeDots(1); nextPage(1)">Play</button>
+			</div>	
+			<div class="page game">
+				<section>
+					<div class="game-container"></div>
+					<h2 class="game-status"></h2>
+					<button class="game-restart">Restart Game</button>
+				</section>
+			</div>
+			<div class="page rules">
+				<h2 class="main-text">Rules</h2>
+			</div>
+			<div class="dots">
+				<div>
+					<h3 class="dotText">Home</h3>
+					<svg class="slide active" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="6" cy="6" r="6" fill="white" />
+					</svg>
+				</div>
+				<div>
+					<h3 class="dotText">Game</h3>
+					<svg class="slide" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="6" cy="6" r="6" fill="white" />
+					</svg>
+				</div>
+				<div>
+					<h3 class="dotText">Rules</h3>
+					<svg class="slide" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="6" cy="6" r="6" fill="white" />
+					</svg>
+				</div>
+			</div>
+		</main>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js" integrity="sha512-1dalHDkG9EtcOmCnoCjiwQ/HEB5SDNqw8d4G2MKoNwjiwMNeBAkudsBCmSlMnXdsH8Bm0mOd3tl/6nL5y0bMaQ==" crossorigin="anonymous"></script>
+	<script src="app.js"></script>
+	<script src="game.js"></script>
+</body>
+</html>

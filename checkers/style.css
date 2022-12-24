@@ -1,0 +1,260 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	font-family: Poppins , sans-serif;
+	overflow: hidden;
+}
+/*Main Block*/
+
+.super{
+	color: white;
+	background:radial-gradient(#232526, #171717);
+}
+/*Navigations */
+.nav-container{
+	position: relative;
+}
+nav{
+	min-height: 10vh;
+	width: 90%;
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 0;
+}
+nav div{
+	z-index: 1;
+}
+nav div h6{
+	text-align: right;
+	padding-right: 6px;
+	margin-top: -10px;
+}
+.logo{
+	font-size:28px;
+	color: #FB4348;
+	cursor: default;
+}
+.links{
+	display: flex;
+	justify-content: flex-end;
+	list-style: none;
+	font-size: 1rem;
+}
+.navlink{
+	cursor: pointer;
+	z-index: 1;
+	margin: 0 20px;
+	font-weight: 300;
+	padding: 8px 12px;
+	border: 1px solid transparent;
+}
+.navlink:hover {
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	transition: all 0.2s linear;
+}
+/*Mobile Menu*/
+.menuHide{
+	display: none;
+	position: absolute;
+	top: 13vh;
+	left: 0px;
+	width: 100%;
+	z-index: 1;	
+	overflow: hidden;
+}
+.nav-open{
+	display: grid;
+	grid-template-columns: 5% 1fr 5%;
+	justify-items: center;
+	align-items: center;
+	transform: translateY(-100%);
+	background: #FB4348;
+}
+/*Menu Icon*/
+.menu{
+	cursor: pointer;
+	display: none;
+	z-index: 1;
+}
+.menuLink{
+	grid-column: 2/3;
+	padding: 8px;
+	font-weight: 700;
+	cursor: pointer;
+}
+/*Content Pages*/
+.page{
+	min-height: 90vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+}
+.game{
+	padding-top: 10rem;
+}
+.game, .rules{
+	position: fixed;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	transform: translateY(120%);
+}
+.main-text{
+	font-size: 48px;
+}
+.play-button{
+	font-family: 'Poppins', sans-serif;
+	background: #FB4348;
+	border: none;
+	color: white;
+	font-size: 1.5rem;
+	padding: 5px 20px;
+	border-radius: 30px;
+	outline: none;
+	cursor: pointer;
+	margin-top: 8rem;
+}
+/*side Panel*/
+.dots{
+	position: absolute;
+	right: 5%;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.dots > div{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.dots div{
+	font-size: 14px;
+	padding: 30px 0px;
+}
+.dots h3{
+	padding: 0 30px;
+	opacity: 0;
+	font-weight: 300;
+}
+.dots svg{
+	cursor: pointer;
+	opacity: 0.5;
+	transform: scale(1);
+	transition: transform 0.5s;
+}
+.dots svg:hover{
+	transform: scale(2);
+}
+.dots svg.active{
+	opacity: 1;
+}
+
+/*Game*/
+section{
+	text-align: center;
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+.game-container{
+	display: grid;
+	grid-template-columns: repeat(7, auto);
+	width: 35vw;
+	margin-top: : 10rem;
+}
+.cell{
+	font-size: 5vw;
+	width: 5vw;
+	height: 5vw;
+	border: 1px solid #ffffff;
+	box-shadow: 0 0 0 1px #333333;
+	cursor: pointer;
+	line-height: 5vw;
+}
+.game-status{
+	font-size: 1rem;
+	margin: 1rem;
+}
+.game-restart{
+	font-family: 'Poppins', sans-serif;
+	background: #FB4348;
+	border: none;
+	color: white;
+	font-size: 1rem;
+	padding: 5px 20px;
+	border-radius: 20px;
+	outline: none;
+	cursor: pointer;
+}
+.borderColorCoral{
+  	background-color: #FB4348;
+}
+.borderColorGreen{
+	background-color: limegreen;
+}
+.hiddenCell {
+	/* IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+
+	/* IE 5-7 */
+	filter: alpha(opacity=0);
+
+	/* Netscape */
+	-moz-opacity: 0;
+
+	/* Safari 1.x */
+	-khtml-opacity: 0;
+
+	/* Good browsers */
+	opacity: 0;
+	cursor: default;
+}
+
+@media (max-width: 800px){
+	.game-container{
+		width: 60vw;
+		margin: 7vw 0 0 0;
+	}
+	.cell{
+		font-size: 8.3vw;
+		width: 8.3vw;
+		height: 8.3vw;
+		line-height: 8.3vw;
+	}
+	.links{
+		display: none;
+	}
+	.menu{
+		display: block;
+	}
+	.game-restart{
+		font-size: 0.8rem;
+	}
+	.menuHide{
+		display: block;
+		z-index: -1;
+	}
+}
+@media (max-width: 481px){
+	.game-container{
+		width: 90vw;
+		margin: 7vw 0 0 0;
+	}
+	.cell{
+		font-size: 12.5vw;
+		width: 12.5vw;
+		height: 12.5vw;
+		line-height: 12.5vw;
+	}
+	.dots{
+		display: none;
+	}
+}
+
