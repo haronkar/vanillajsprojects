@@ -1,6 +1,6 @@
 gsap.registerPlugin(Flip);
 
-const musicContainer = document.querySelector(".music-container");
+// const musicContainer = document.querySelector(".music-container");
 const playBtn = document.querySelector("#play");
 const nextBtn = document.querySelector("#next");
 const prevBtn = document.querySelector("#prev");
@@ -8,7 +8,6 @@ const prevBtn = document.querySelector("#prev");
 const shuffleBtn = document.querySelector("#shuffle");
 const repeatBtn = document.querySelector("#repeat");
 const queueBtn = document.querySelector("#queue");
-queueBtn._variable = "name";
 
 const audio = document.querySelector("#audio");
 const title = document.querySelector(".title");
@@ -29,11 +28,9 @@ const file = document.querySelector("#file");
 var link = document.querySelector("link[rel~='icon']");
 var linkApple = document.querySelector("link[rel~='apple-touch-icon']");
 
-console.log(linkApple);
-
 const jsmediatags = window.jsmediatags;
-let songs = ["vagrant", "believer", "spaceship"];
-let index = 2;
+let songs = ["Vagrant", "Believer", "Spaceship"];
+let index = 0;
 
 let isSeeking = false;
 let repeat = false;
@@ -42,45 +39,34 @@ let isPlaying = false;
 
 let prototype = true;
 
-// setSongList(songs);
-loadSong(songs[index]);
+setSongListPrototype(songsObj);
+loadSongPrototype(songsObj[index]);
 
 audio.volume = 0.1;
 
 // song functions
+
 function loadSong(song, tag = null) {
-  progress.value = 0;
-
-  if (prototype) {
-    title.innerHTML = `${song}`;
-    cover.src = `cover/${song}.jpg`;
-    audio.src = `songs/${song}.ogg`;
-
-    document.title = `${song}`;
-    link.href = `cover/${song}.jpg`;
-  } else {
-    if (tag.tags.picture) {
-      const data = tag.tags.picture.data;
-      const format = tag.tags.picture.format;
-      let base64String = "";
-      for (let i = 0; i < data.length; i++) {
-        base64String += String.fromCharCode(data[i]);
-      }
-      cover.src = `data:${format};base64,${window.btoa(base64String)}`;
-      link.href = `data:${format};base64,${window.btoa(base64String)}`;
-      linkApple.href = `data:${format};base64,${window.btoa(base64String)}`;
-    } else {
-      cover.src = "cover/vagrant.jpg";
-      link.href = "cover/vagrant.jpg";
+  if (tag.tags.picture) {
+    const data = tag.tags.picture.data;
+    const format = tag.tags.picture.format;
+    let base64String = "";
+    for (let i = 0; i < data.length; i++) {
+      base64String += String.fromCharCode(data[i]);
     }
-
-    title.innerHTML = tag.tags.title;
-    subTitle.innerHTML = tag.tags.artist;
-    audio.src = URL.createObjectURL(song);
-
-    console.log(URL.createObjectURL(song));
-    document.title = tag.tags.title;
+    cover.src = `data:${format};base64,${window.btoa(base64String)}`;
+    link.href = `data:${format};base64,${window.btoa(base64String)}`;
+  } else {
+    cover.src = "cover/vagrant.jpg";
+    link.href = "cover/vagrant.jpg";
   }
+
+  title.innerHTML = tag.tags.title;
+  subTitle.innerHTML = tag.tags.artist;
+  audio.src = URL.createObjectURL(song);
+
+  document.title = tag.tags.title;
+
   if (!isPlaying) return;
   playSong();
 }
@@ -120,7 +106,7 @@ function nextSong() {
     if (!songs[index].type && !prototype) index++;
   }
 
-  if (prototype) loadSong(songs[index]);
+  if (prototype) loadSongPrototype(songsObj[index]);
   else loadMetadata(songs[index]);
 }
 function prevSong() {
@@ -132,7 +118,7 @@ function prevSong() {
     if (index < 0) index = songs.length - 1;
   }
 
-  if (prototype) loadSong(songs[index]);
+  if (prototype) loadSongPrototype(songsObj[index]);
   else loadMetadata(songs[index]);
 }
 
@@ -197,10 +183,9 @@ function createSongItem(song, tag, pos) {
   songItemEl._obj = song;
   songItemEl._index = pos;
   songItemEl.addEventListener("click", (e) => {
-    console.log(e.target._obj);
+    isPlaying = true;
     loadMetadata(e.target._obj);
     index = e.target._index;
-    isPlaying = true;
   });
 
   const songNameEle = document.createElement("h3");
@@ -216,6 +201,7 @@ function createSongItem(song, tag, pos) {
 
   listContent.append(songItemEl);
 }
+
 function setSongList(songs) {
   removeChild();
   for (let i = 0; i < songs.length; i++) {
