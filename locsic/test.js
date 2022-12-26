@@ -60,7 +60,13 @@ function loadSongPrototype(song) {
 
   document.title = song.name;
 
-  console.log(isPlaying);
+  audio.onloadedmetadata = function () {
+    const duration = audio.duration;
+    const currentTime = audio.currentTime;
+    console.log(formatTime(duration));
+    currentLable.innerHTML = formatTime(currentTime);
+    durationLabel.innerHTML = formatTime(duration);
+  };
   if (!isPlaying) return;
   playSong();
 }

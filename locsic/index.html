@@ -15,7 +15,17 @@
   <body>
     <div class="name-container">
       <h2 class="name">Locsic</h2>
-      <input id="file" type="file" webkitdirectory directory multiple />
+
+      <label for="file"
+        >Select file
+        <input
+          class="file"
+          id="file"
+          type="file"
+          webkitdirectory
+          directory
+          multiple />
+      </label>
       <!-- <input type="file" id="file" /> -->
     </div>
     <div class="music-container">
@@ -36,6 +46,10 @@
               value="0"
               class="progress"
               id="progress" />
+            <div class="time">
+              <span id="current">0:23</span>
+              <span id="duration">4:10</span>
+            </div>
           </div>
         </div>
         <div class="song-list-container">
@@ -81,8 +95,8 @@
       </div>
     </div>
 
-    <audio id="audio">
-      <source src="songs/vagrant.ogg" />
+    <audio id="audio" preload="metadata">
+      <source src="songs/Spaceship.mp3" />
     </audio>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"

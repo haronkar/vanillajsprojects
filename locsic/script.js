@@ -16,6 +16,8 @@ const cover = document.querySelector("#cover");
 
 const progressContainer = document.querySelector(".progress-container");
 const progress = document.querySelector(".progress");
+const currentLable = document.querySelector("#current");
+const durationLabel = document.querySelector("#duration");
 
 const listContainer = document.querySelector(".song-list-container");
 const listContent = document.querySelector(".list-content");
@@ -128,6 +130,8 @@ function updateProgress(e) {
 
   const progressPercentage = (currentTime / duration) * 100;
   if (!isSeeking) progress.value = progressPercentage;
+
+  currentLable.innerHTML = formatTime(currentTime);
 }
 function setProgress(e) {
   const maxValue = e.target.max;
@@ -148,6 +152,18 @@ function toogleShuffle() {
   else shuffleBtn.classList.add("active");
 
   shuffle = !shuffle;
+}
+
+function formatTime(duration) {
+  let min = parseInt(duration / 60);
+  let sec = Math.round(duration % 60);
+  if (sec >= 60) {
+    min++;
+    sec = 0;
+  }
+  const time = sec < 10 ? "0" + sec.toString() : sec.toString();
+
+  return `${min}:${time}`;
 }
 
 // Volume
@@ -223,6 +239,7 @@ function removeChild() {
     listContent.removeChild(listContent.lastChild);
   }
 }
+
 // event listeners
 playBtn.addEventListener("click", playSong);
 nextBtn.addEventListener("click", nextSong);
