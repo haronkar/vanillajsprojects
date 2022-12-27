@@ -80,6 +80,10 @@ label {
   flex-direction: column;
   flex: 1;
   overflow: hidden;
+  padding-bottom: 0;
+}
+.lower-container {
+  padding-top: 0;
 }
 .player {
   width: 100%;
@@ -92,7 +96,7 @@ label {
   position: relative;
   width: 15rem;
   height: 15rem;
-  margin-bottom: 0.6rem;
+  margin-bottom: 1rem;
   border-radius: 1rem;
   overflow: hidden;
 }
@@ -115,7 +119,7 @@ label {
 .title {
   font-size: 1.3em;
   font-weight: 600;
-  margin: 0.5rem 0;
+  margin-bottom: 0.5rem;
   padding: 0 0.5rem;
   text-transform: capitalize;
   width: 100%;
@@ -129,7 +133,7 @@ label {
 }
 .progress-container {
   width: 100%;
-  margin-bottom: 2rem;
+  margin: 0.3rem 0;
   display: grid;
   place-items: center;
 }
