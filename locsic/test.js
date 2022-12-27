@@ -1,6 +1,6 @@
 const songsObj = [
   {
-    name: "Vagrant (Feat. Veela)ajsndamsndadn",
+    name: "Vagrant (Feat. Veela)",
     artist: "Feint",
     song: "songs/Feint - Vagrant (Feat. Veela).mp3",
     cover: "cover/vagrant.jpg",
