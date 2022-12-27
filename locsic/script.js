@@ -1,6 +1,7 @@
 gsap.registerPlugin(Flip);
 
 // const musicContainer = document.querySelector(".music-container");
+const bgImage = document.querySelector(".bgimage");
 const playBtn = document.querySelector("#play");
 const nextBtn = document.querySelector("#next");
 const prevBtn = document.querySelector("#prev");
@@ -31,7 +32,7 @@ var link = document.querySelector("link[rel~='icon']");
 var linkApple = document.querySelector("link[rel~='apple-touch-icon']");
 
 const jsmediatags = window.jsmediatags;
-let songs = ["Vagrant", "Believer", "Spaceship"];
+let songs = songsObj;
 let index = 0;
 
 let isSeeking = false;
@@ -49,6 +50,7 @@ audio.volume = 0.1;
 // song functions
 
 function loadSong(song, tag = null) {
+  const state = Flip.getState(title);
   if (tag.tags.picture) {
     const data = tag.tags.picture.data;
     const format = tag.tags.picture.format;
@@ -58,8 +60,12 @@ function loadSong(song, tag = null) {
     }
     cover.src = `data:${format};base64,${window.btoa(base64String)}`;
     link.href = `data:${format};base64,${window.btoa(base64String)}`;
+    bgImage.style.backgroundImage = `url(data:${format};base64,${window.btoa(
+      base64String
+    )})`;
   } else {
     cover.src = "cover/vagrant.jpg";
+    bgImage.style.backgroundImage = "url(cover/vagrant.jpg)";
     link.href = "cover/vagrant.jpg";
   }
 
@@ -68,6 +74,11 @@ function loadSong(song, tag = null) {
   audio.src = URL.createObjectURL(song);
 
   document.title = tag.tags.title;
+  Flip.from(state, {
+    duration: 1,
+    ease: "expo-out",
+    // absolute: true,
+  });
 
   if (!isPlaying) return;
   playSong();
@@ -108,7 +119,7 @@ function nextSong() {
     if (!songs[index].type && !prototype) index++;
   }
 
-  if (prototype) loadSongPrototype(songsObj[index]);
+  if (prototype) loadSongPrototype(songs[index]);
   else loadMetadata(songs[index]);
 }
 function prevSong() {
@@ -116,11 +127,11 @@ function prevSong() {
   else {
     index--;
     // Mac folder system have an issue, and i hate that
-    if (!songs[index].type && !prototype) index--;
+    if (!prototype && !songs[index].type) index--;
     if (index < 0) index = songs.length - 1;
   }
 
-  if (prototype) loadSongPrototype(songsObj[index]);
+  if (prototype) loadSongPrototype(songs[index]);
   else loadMetadata(songs[index]);
 }
 

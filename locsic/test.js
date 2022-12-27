@@ -1,6 +1,6 @@
 const songsObj = [
   {
-    name: "Vagrant (Feat. Veela)",
+    name: "Vagrant (Feat. Veela)ajsndamsndadn",
     artist: "Feint",
     song: "songs/Feint - Vagrant (Feat. Veela).mp3",
     cover: "cover/vagrant.jpg",
@@ -57,13 +57,13 @@ function loadSongPrototype(song) {
   subTitle.innerHTML = song.artist;
   cover.src = song.cover;
   audio.src = song.song;
-
+  bgImage.style.backgroundImage = `url(${song.cover})`;
   document.title = song.name;
 
   audio.onloadedmetadata = function () {
     const duration = audio.duration;
     const currentTime = audio.currentTime;
-    console.log(formatTime(duration));
+
     currentLable.innerHTML = formatTime(currentTime);
     durationLabel.innerHTML = formatTime(duration);
   };
