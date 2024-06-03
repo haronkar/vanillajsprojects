@@ -1,3 +1,5 @@
 # VanillaJs Projects
 
-Checkers: https://checkers-haronkar.vercel.app/
+Checkers: [Link to Site](https://checkers-haronkar.vercel.app/)
+
+Locsic: [Link to Site](https://locsic.vercel.app/)
